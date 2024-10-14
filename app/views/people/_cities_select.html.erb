@@ -1,0 +1,9 @@
+<%= turbo_frame_tag 'person_cities_select', data: { 
+    update_url: cities_select_people_url,
+    request_param_name: 'state' 
+  } do %>
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.select :city, options_for_select(cities), prompt: 'Select one' %>
+  </div>
+<% end %>

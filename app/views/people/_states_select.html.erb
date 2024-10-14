@@ -1,0 +1,13 @@
+<%= turbo_frame_tag 'person_states_select', data: { 
+    update_url: states_select_people_url,
+    request_param_name: 'country' 
+  } do %>
+  <div>
+    <%= form.label :state, style: "display: block" %>
+    <%= form.select :state, options_for_select(states), { prompt: 'Select one' },
+    data: { 
+      action: "change->dependent-fields#updateDependent",
+      dependent_fields_turbo_frame_selector_param: '#person_cities_select'
+    } %>
+  </div>
+<% end %>
