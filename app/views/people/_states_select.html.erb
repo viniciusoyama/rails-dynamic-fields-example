@@ -4,7 +4,8 @@
   } do %>
   <div class="mt-4">
     <%= form.label :state, style: "display: block" %>
-    <%= form.select :state, options_for_select(states), { prompt: 'Select one' },
+    <%= form.select :state, options_for_select(states), { prompt: 'Select one state' },
+    class: 'w-full', 
     data: { 
       dependent_fields_target: "hasDependents",
       dependant_turbo_frame_selector: '#person_cities_select'

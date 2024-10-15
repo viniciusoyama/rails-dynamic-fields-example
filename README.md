@@ -8,6 +8,7 @@ Blog post:
 
 `docker compose build`
 `docker compose up`
+`docker compose run web bin/rails db:create db:migrate`
 
 Go to `http://localhost:3000/people/new` 
 

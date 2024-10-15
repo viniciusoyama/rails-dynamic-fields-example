@@ -4,11 +4,11 @@
   } do %>
   <div class="mt-4">
     <%= form.label :project_label, style: "display: block" %>
-    <%= form.select :project_label, options_for_select(ProjectLabel.find_by_project(project)), prompt: 'Select one' %>
+    <%= form.select :project_label, options_for_select(ProjectLabel.find_by_project(project)), { prompt: 'Select one label' }, class: 'w-full' %>
   </div>
 
   <div class="mt-4">
     <%= form.label :project_task, style: "display: block" %>
-    <%= form.select :project_task, options_for_select(ProjectTask.find_by_project(project)), prompt: 'Select one' %>
+    <%= form.select :project_task, options_for_select(ProjectTask.find_by_project(project)), { prompt: 'Select one task' }, class: 'w-full' %>
   </div>
 <% end %>

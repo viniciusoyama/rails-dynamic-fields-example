@@ -13,12 +13,13 @@
 
   <div class="mt-6">
     <%= form.label :name, style: "display: block", class: '' %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'w-full' %>
   </div>
 
   <div class="mt-6">
     <%= form.label :country, style: "display: block", class: '' %>
-    <%= form.select :country, options_for_select(Country.all), { prompt: 'Select one' },
+    <%= form.select :country, options_for_select(Country.all), { prompt: 'Select one country' },
+    class: 'w-full',
     data: { 
       dependent_fields_target: "hasDependents",
       dependant_turbo_frame_selector: '#person_states_select'
@@ -33,7 +34,8 @@
 
   <div class="mt-6">
     <%= form.label :project, style: "display: block", class: '' %>
-    <%= form.select :project, options_for_select(Project.all), { prompt: 'Select one' },
+    <%= form.select :project, options_for_select(Project.all), { prompt: 'Select one project' },
+    class: 'w-full',
     data: { 
       dependent_fields_target: "hasDependents",
       dependant_turbo_frame_selector: '#project_fields'
