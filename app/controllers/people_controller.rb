@@ -27,6 +27,10 @@ class PeopleController < ApplicationController
     @cities = City.find_by_state(params[:state])
   end
 
+  def project_fields
+    @project = params[:project]
+  end
+
   # POST /people or /people.json
   def create
     @person = Person.new(person_params)

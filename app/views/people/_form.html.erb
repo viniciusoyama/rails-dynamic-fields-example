@@ -29,7 +29,24 @@
 
   <%= render partial: 'cities_select', locals: { form: form, cities: City.find_by_state(@person.state) } %>
 
+  <hr/>
+
+  <h1>Project</h1>
+
+  <div>
+    <%= form.label :project, style: "display: block" %>
+    <%= form.select :project, options_for_select(Project.all), { prompt: 'Select one' },
+    data: { 
+      dependent_fields_target: "hasDependents",
+      dependant_turbo_frame_selector: '#project_fields'
+    } %>
+  </div>
+
+
+  <%= render partial: 'project_fields', locals: { form: form, project: @person.project } %>
+
   <div>
     <%= form.submit %>
   </div>
+
 <% end %>

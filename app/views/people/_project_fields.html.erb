@@ -1,0 +1,14 @@
+<%= turbo_frame_tag 'project_fields', data: { 
+    update_url: project_fields_people_url,
+    request_param_name: 'project' 
+  } do %>
+  <div>
+    <%= form.label :project_label, style: "display: block" %>
+    <%= form.select :project_label, options_for_select(ProjectLabel.find_by_project(project)), prompt: 'Select one' %>
+  </div>
+
+  <div>
+    <%= form.label :project_task, style: "display: block" %>
+    <%= form.select :project_task, options_for_select(ProjectTask.find_by_project(project)), prompt: 'Select one' %>
+  </div>
+<% end %>
