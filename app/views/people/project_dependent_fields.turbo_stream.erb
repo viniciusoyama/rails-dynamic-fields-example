@@ -1,6 +1,6 @@
 <%= form_with(model: Person.new) do |form| %>
-  <%= turbo_stream.replace 'project_fields', 
-    partial: "project_fields", locals: { 
+  <%= turbo_stream.replace 'project_dependent_fields', 
+    partial: "project_dependent_fields", locals: { 
       form: form,
       project: @project
     } 

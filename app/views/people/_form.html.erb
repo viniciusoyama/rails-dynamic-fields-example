@@ -38,12 +38,12 @@
     class: 'w-full',
     data: { 
       dependent_fields_target: "hasDependents",
-      dependant_turbo_frame_selector: '#project_fields'
+      dependant_turbo_frame_selector: '#project_dependent_fields'
     } %>
   </div>
 
 
-  <%= render partial: 'project_fields', locals: { form: form, project: @person.project } %>
+  <%= render partial: 'project_dependent_fields', locals: { form: form, project: @person.project } %>
 
   <div class="mt-6">
     <%= form.submit 'Create', class: 'btn-primary btn-xl' %>

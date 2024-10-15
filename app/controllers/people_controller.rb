@@ -27,7 +27,7 @@ class PeopleController < ApplicationController
     @cities = City.find_by_state(params[:state])
   end
 
-  def project_fields
+  def project_dependent_fields
     @project = params[:project]
   end
 
