@@ -2,7 +2,7 @@
     update_url: states_select_people_url,
     request_param_name: 'country' 
   } do %>
-  <div>
+  <div class="mt-4">
     <%= form.label :state, style: "display: block" %>
     <%= form.select :state, options_for_select(states), { prompt: 'Select one' },
     data: { 

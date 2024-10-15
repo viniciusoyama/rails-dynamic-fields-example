@@ -1,11 +1,9 @@
 <% content_for :title, "New person" %>
 
-<h1>New person</h1>
-
+<div class="w-[500px] p-5 border border-gray-200 rounded-md mx-auto">
+<h1 class="text-xl">New person</h1>
+<hr/>
 <%= render "form", person: @person %>
-
-<br>
-
-<div>
-  <%= link_to "Back to people", people_path %>
 </div>
+
+

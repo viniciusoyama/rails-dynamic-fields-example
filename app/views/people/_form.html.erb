@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
+  <div class="mt-6">
+    <%= form.label :name, style: "display: block", class: '' %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :country, style: "display: block" %>
+  <div class="mt-6">
+    <%= form.label :country, style: "display: block", class: '' %>
     <%= form.select :country, options_for_select(Country.all), { prompt: 'Select one' },
     data: { 
       dependent_fields_target: "hasDependents",
@@ -29,12 +29,10 @@
 
   <%= render partial: 'cities_select', locals: { form: form, cities: City.find_by_state(@person.state) } %>
 
-  <hr/>
+  <h1 class="border-b text-lg border-gray-200 mt-8 mb-4">Project</h1>
 
-  <h1>Project</h1>
-
-  <div>
-    <%= form.label :project, style: "display: block" %>
+  <div class="mt-6">
+    <%= form.label :project, style: "display: block", class: '' %>
     <%= form.select :project, options_for_select(Project.all), { prompt: 'Select one' },
     data: { 
       dependent_fields_target: "hasDependents",
@@ -45,8 +43,8 @@
 
   <%= render partial: 'project_fields', locals: { form: form, project: @person.project } %>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-6">
+    <%= form.submit 'Create', class: 'btn-primary btn-xl' %>
   </div>
 
 <% end %>
