@@ -6,8 +6,8 @@
     <%= form.label :state, style: "display: block" %>
     <%= form.select :state, options_for_select(states), { prompt: 'Select one' },
     data: { 
-      action: "change->dependent-fields#updateDependent",
-      dependent_fields_turbo_frame_selector_param: '#person_cities_select'
+      dependent_fields_target: "hasDependents",
+      dependant_turbo_frame_selector: '#person_cities_select'
     } %>
   </div>
 <% end %>

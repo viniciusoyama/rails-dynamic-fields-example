@@ -20,8 +20,8 @@
     <%= form.label :country, style: "display: block" %>
     <%= form.select :country, options_for_select(Country.all), { prompt: 'Select one' },
     data: { 
-      action: "change->dependent-fields#updateDependent",
-      dependent_fields_turbo_frame_selector_param: '#person_states_select'
+      dependent_fields_target: "hasDependents",
+      dependant_turbo_frame_selector: '#person_states_select'
     } %>
   </div>
 

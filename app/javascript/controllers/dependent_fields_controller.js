@@ -1,36 +1,56 @@
 
 import { Controller } from "@hotwired/stimulus"
 
-export default class extends Controller {
+function updateTurboFrames(turboFrameSelector, requestParamValue) {
+  const elements = document.querySelectorAll(turboFrameSelector)
+  
+  elements.forEach((turboFrame) => {
 
-  updateDependent(event) {
-    const turboFrameSelector = event.params.turboFrameSelector    
-    const elements = document.querySelectorAll(turboFrameSelector)
+    if (!turboFrame.hasAttribute('data-update-url')) {
+      console.warn(`Turbo frame with selector ${turboFrameSelector} is missing the 'data-update-url' attribute`)
+      return
+    }
+
+    if (!turboFrame.hasAttribute('data-request-param-name')) {
+      console.warn(`Turbo frame with selector ${turboFrameSelector} is missing the 'data-request-param-name' attribute`)
+      return
+    }
     
-    elements.forEach((turboFrame) => {
+    const updateUrl = turboFrame.getAttribute('data-update-url')
+    const requestParamName = turboFrame.getAttribute('data-request-param-name')
 
-      if (!turboFrame.hasAttribute('data-update-url')) {
-        console.warn(`Turbo frame with selector ${turboFrameSelector} is missing the 'data-update-url' attribute`)
-        return
-      }
+    const fullURL = new URL(updateUrl);
+    fullURL.searchParams.set(requestParamName, requestParamValue);
+    fullURL.searchParams.set('format', 'turbo_stream');
 
-      if (!turboFrame.hasAttribute('data-request-param-name')) {
-        console.warn(`Turbo frame with selector ${turboFrameSelector} is missing the 'data-request-param-name' attribute`)
-        return
-      }
-      
-      const updateUrl = turboFrame.getAttribute('data-update-url')
-      const requestParamName = turboFrame.getAttribute('data-request-param-name')
-      const requestParamValue = event.target.value
+    
+    turboFrame.src = fullURL.toString();
 
-      const fullURL = new URL(updateUrl);
-      fullURL.searchParams.set(requestParamName, requestParamValue);
-      fullURL.searchParams.set('format', 'turbo_stream');
+    turboFrame.reload()
+  })
+}
 
-      
-      turboFrame.src = fullURL.toString();
+export default class extends Controller {
+  static targets = [ "hasDependents" ]
+  
+  hasDependentsTargetConnected(element) {
 
-      turboFrame.reload()
+    if (!element.hasAttribute('data-dependant-turbo-frame-selector')) {
+      console.warn(`hasDependents element is missing the 'data-dependant-turbo-frame-selector' attribute`)
+      return
+    }
+
+    const turboFrameSelector = element.getAttribute('data-dependant-turbo-frame-selector')  
+
+    element.addEventListener('change', () => {
+      updateTurboFrames(turboFrameSelector, element.value)
     })
   }
+
+  hasDependentsTargetDisconnected(element) {    
+    const turboFrameSelector = element.getAttribute('data-dependant-turbo-frame-selector')  
+    updateTurboFrames(turboFrameSelector, '')
+  }
+
+  
 }
