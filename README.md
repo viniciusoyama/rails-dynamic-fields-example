@@ -5,10 +5,10 @@ Video tutorial:
 Blog post:
 
 # How to Run?
-`docker build .`
 
-Go to 
+`docker compose build`
+`docker compose up`
 
-`http://localhost:3000/people` 
+Go to `http://localhost:3000/people/new` 
 
-And test changing the country/state/city selects
+And test changing the country/state/city selects or the project select.
