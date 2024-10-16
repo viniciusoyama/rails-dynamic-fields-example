@@ -44,6 +44,31 @@
 
 
   <%= render partial: 'project_dependent_fields', locals: { form: form, project: @person.project } %>
+  
+  <div class="mt-6 mb-4">
+    <%= form.label :role, style: "display: block", class: '' %>
+    <div class="flex inline-flex gap-4">
+      <% options = { 
+          data: { 
+            dependent_fields_target: "hasDependents",
+            dependant_turbo_frame_selector: '#role_dependent_fields'
+          }
+        }
+      %>
+      <label>
+        <%= form.radio_button :role, 'Admin', options %> Admin
+      </label>
+      <label>
+        <%= form.radio_button :role, 'Manager', options %> Manager
+      </label>
+      <label>
+        <%= form.radio_button :role, 'Standard', options %> Standard
+      </label>
+    </div>
+  </div>
+
+  <%= render partial: 'role_dependent_fields', locals: { form: form, role: @person.role } %>
+
 
   <div class="mt-6">
     <%= form.submit 'Create', class: 'btn-primary btn-xl' %>

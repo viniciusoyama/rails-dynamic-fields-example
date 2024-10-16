@@ -31,6 +31,10 @@ class PeopleController < ApplicationController
     @project = params[:project]
   end
 
+  def role_dependent_fields
+    @role = params[:role].downcase
+  end
+
   # POST /people or /people.json
   def create
     @person = Person.new(person_params)

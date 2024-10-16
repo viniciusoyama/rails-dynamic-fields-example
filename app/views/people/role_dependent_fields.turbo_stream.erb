@@ -1,0 +1,8 @@
+<%= form_with(model: Person.new) do |form| %>
+  <%= turbo_stream.replace 'role_dependent_fields', 
+    partial: "role_dependent_fields", locals: { 
+      form: form,
+      role: @role
+    } 
+  %>
+<% end %>

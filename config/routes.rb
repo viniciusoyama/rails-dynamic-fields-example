@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get :cities_select, on: :collection
     get :states_select, on: :collection
     get :project_dependent_fields, on: :collection
+    get :role_dependent_fields, on: :collection
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

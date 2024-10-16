@@ -13,6 +13,11 @@
 ActiveRecord::Schema[7.2].define(version: 2024_10_15_012400) do
   create_table "people", force: :cascade do |t|
     t.string "name"
+    t.string "role"
+    t.string "admin_alias"
+    t.string "admin_email"
+    t.string "manager_position"
+    t.string "phone"
     t.string "state"
     t.string "city"
     t.string "country"

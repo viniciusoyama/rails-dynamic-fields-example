@@ -1,0 +1,36 @@
+<%= turbo_frame_tag 'role_dependent_fields', data: { 
+    update_url: role_dependent_fields_people_url,
+    request_param_name: 'role' 
+  } do %>
+  
+  <% if role == 'standard' %>
+    <marquee scrollamount="20"><p class="border-indigo-800 border bg-slate-100 p-2 text-slate-500 text-2xl">You will be standard</p></marquee>
+    <div class="p-4 mt-6 border border-indigo-500 rounded-md">
+      <%= form.label :standard_phone, style: "display: block", class: '' %>
+      <%= form.text_field :standard_phone, class: 'w-full' %>
+    </div>
+
+  <% end %>
+
+  <% if role == 'manager' %>
+    <marquee scrollamount="20"><p class="border-yellow-800 border bg-yellow-100 p-2 text-slate-500 text-2xl">You will be manager</p></marquee>
+    <div class="p-4 mt-6 border border-yellow-500 rounded-md">
+      <%= form.label :manager_position, style: "display: block", class: '' %>
+      <%= form.text_field :manager_position, class: 'w-full' %>
+    </div>
+  <% end %>
+
+  <% if role == 'admin' %>
+    <marquee scrollamount="20"><p class="border-emerald-800 border bg-emerald-100 p-2 text-slate-500 text-2xl">You will be admin</p></marquee>
+    <div class="p-4 mt-6 border border-emerald-500 rounded-md">
+      <div class="mt-6">
+        <%= form.label :admin_email, style: "display: block", class: '' %>
+        <%= form.text_field :admin_email, class: 'w-full' %>
+      </div>
+      <div class="mt-6">
+        <%= form.label :admin_alias, style: "display: block", class: '' %>
+        <%= form.text_field :admin_alias, class: 'w-full' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
