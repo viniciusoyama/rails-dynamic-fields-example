@@ -1,8 +1,13 @@
-<%= form_with(model: Person.new) do |form| %>
+
+
+
+<%= capture_for_dynamic_fields(Person.new) do |form| %>
+
   <%= turbo_stream.replace 'person_states_select', 
     partial: "states_select", locals: { 
       form: form,
       states: @states
     } 
   %>
+
 <% end %>
