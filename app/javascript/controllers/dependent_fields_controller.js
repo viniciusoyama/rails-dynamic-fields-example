@@ -1,8 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-// FROM
-// https://vinioyama.com/blog/how-to-create-dynamic-form-fields-in-rails-with-auto-updates-with-hotwire-stimulusjs-and-turbo/
-
 function updateTurboFrames(turboFrameSelector, requestParamValue) {
   const elements = document.querySelectorAll(turboFrameSelector)
 
@@ -23,8 +20,6 @@ function updateTurboFrames(turboFrameSelector, requestParamValue) {
 
     const fullURL = new URL(updateUrl);
     fullURL.searchParams.set(requestParamName, requestParamValue);
-    fullURL.searchParams.set('format', 'turbo_stream');
-
 
     turboFrame.src = fullURL.toString();
 
@@ -50,13 +45,11 @@ export default class extends Controller {
   }
 
   hasDependentsTargetDisconnected(element) {
-    // If the form using this controller is disconnecting
-    // We don't want to trigger this update
-    // This is for edge cases where a existing form is being replaced
-    // With a new instance of the same form
-    // Without this condition a request (with an empty param value) to update the dependent turbo frames will be triggered
-    // And the response will replace the content of the new form (which could already have the dependent content loaded)
-    // With an empty state dependent content
+    // The 'isDisconnecting' is for edge cases where a existing form is being replaced
+    // With a new instance of the same form (for instance, an update with errors)
+    // Without this condition, a new request (with an empty param value) to update the dependent turbo frames will be triggered
+    // And the response will replace the content of the new form (which already have the dependent content loaded)
+    // With an empty state dependent content. Resulting in an undesirable state.
     if (this.isDisconnecting != true) {
       const turboFrameSelector = element.getAttribute('data-dependant-turbo-frame-selector')
       updateTurboFrames(turboFrameSelector, '')

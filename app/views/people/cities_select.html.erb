@@ -1,0 +1,7 @@
+<%= form_with(model: Person.new) do |form| %>
+  <%= render partial: "cities_select", locals: {
+      form: form,
+      cities: @cities
+    }
+  %>
+<% end %>

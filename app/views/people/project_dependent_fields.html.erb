@@ -1,0 +1,7 @@
+<%= form_with(model: Person.new) do |form| %>
+  <%= render partial: "project_dependent_fields", locals: {
+      form: form,
+      project: @project
+    }
+  %>
+<% end %>

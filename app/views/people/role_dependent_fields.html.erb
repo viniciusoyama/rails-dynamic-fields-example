@@ -1,0 +1,7 @@
+<%= form_with(model: Person.new) do |form| %>
+  <%= render partial: "role_dependent_fields", locals: {
+      form: form,
+      role: @role
+    }
+  %>
+<% end %>

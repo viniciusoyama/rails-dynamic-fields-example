@@ -1,0 +1,12 @@
+
+
+
+<%= form_with(model: Person.new) do |form| %>
+
+  <%= render partial: "states_select", locals: {
+      form: form,
+      states: @states
+    }
+  %>
+
+<% end %>
